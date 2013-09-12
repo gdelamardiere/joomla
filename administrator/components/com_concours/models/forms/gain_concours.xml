@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form >
+	<fieldset>		
+		<field name="id" type="hidden" />
+		<field name="id_concours" type="hidden" />
+		<field name="place" type="text" label="COM_CONCOURS_CONCOURS_PLACE_LABEL" description="COM_CONCOURS_CONCOURS_PLACE_DESC" size="100" class="inputbox" readonly="true" />
+		<field name="lot" type="text" label="COM_CONCOURS_CONCOURS_LOT_LABEL" description="COM_CONCOURS_CONCOURS_LOT_DESC" size="40" class="inputbox" default="" required="true"  />
+	</fieldset>
+</form>
+
+

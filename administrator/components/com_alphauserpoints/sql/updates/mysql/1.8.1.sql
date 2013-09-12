@@ -1,0 +1,1 @@
+ALTER TABLE #__alpha_userpoints_rules CHANGE `rule_name` `rule_name` VARCHAR( 100 );

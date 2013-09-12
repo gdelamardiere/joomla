@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.6.0" type="plugin" group="quickicon" method="upgrade">
+	<name>alphauserpointsicon</name>
+	<author>Bernard Gilly</author>
+	<creationDate>2012 october 30</creationDate>
+	<copyright>Copyright (c)2008-2012 Bernard Gilly</copyright>
+	<license>license GNU/GPL http://www.gnu.org/copyleft/gpl.html</license>
+	<authorEmail>contact@alphaplug.com</authorEmail>
+	<authorUrl>http://www.alphaplug.com</authorUrl>
+	<version>1.8.0</version>
+	<isapplication>true</isapplication>
+	<description>
+		Quickicon for AlphaUserPoints
+	</description>
+	<files>
+		<file plugin="alphauserpointsicon">alphauserpointsicon.php</file>
+	</files>
+</install>
