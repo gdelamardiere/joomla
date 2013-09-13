@@ -62,4 +62,126 @@ class concoursControllerconcours extends JControllerForm{
 		}
 		return $return;
 	}
+
+	public function tirage($key = null, $urlVar = null){
+		$app = JFactory::getApplication();
+		$model = $this->getModel();
+		$table = $model->getTable();
+		$id_concours = JRequest::getint('id');
+		$exist=$table->load($id_concours);
+		
+		//si le concours n'existe pas
+		if(!$exist){
+				$this->setError(JText::_('JLIB_APPLICATION_ERROR_NON_EXIST_ID'));
+				$this->setMessage($this->getError(), 'error');
+				$this->setRedirect(
+					JRoute::_(
+						'index.php?option=' . $this->option . '&view=' . $this->view_list
+						. $this->getRedirectToListAppend(), false
+					)
+				);
+			return false;
+		}
+		//si le concours existe mais le tirage est deja effectué
+		elseif($exist && $table->tirage==1){
+				$this->setError(JText::_('JLIB_APPLICATION_ERROR_ALREADY_EFFECTUED'));
+				$this->setMessage($this->getError(), 'error');
+				$this->setRedirect(
+					JRoute::_(
+						'index.php?option=' . $this->option . '&view=' . $this->view_list
+						. $this->getRedirectToListAppend(), false
+					)
+				);
+			return false;
+		}
+		else{
+			//determine les participants
+			$db = JFactory::getDBO();
+	        $query = $db->getQuery(true);
+	        $query->select('p.id_user,p.nb_ligne');
+	        $query->where('p.id_concours='.$id_concours);
+	        $query->from('#__participant p');
+	        $db->setQuery((string)$query);
+			$listParticipant = $db->loadObjectList();
+			$nb_participant=count($listParticipant);
+			//si le concours existe mais plus de gagnant que de participant
+			if($table->nb_gagnant>$nb_participant)
+			{
+				$this->setError(JText::_('JLIB_APPLICATION_ERROR_NB_PARTICIPANT'));
+				$this->setMessage($this->getError(), 'error');
+				$this->setRedirect(
+					JRoute::_(
+						'index.php?option=' . $this->option . '&view=' . $this->view_list
+						. $this->getRedirectToListAppend(), false
+					)
+				);
+			return false;
+			}
+			//sinon on effectue le tirage au sort
+			else
+			{
+				$db = JFactory::getDBO();
+	            $query = $db->getQuery(true);
+	            $query->select('p.id_user,p.nb_ligne');
+	            $query->where('p.id_concours='.$id_concours);
+	            $query->from('#__participant p');
+	            $db->setQuery((string)$query);
+				$listParticipant = $db->loadObjectList();
+				$listGagnant=$this->SelectAllGagnant($listParticipant,$table->nb_gagnant);
+				for($i=0;$i<count($listGagnant);$i++){
+					$this->insertGagnant($id_concours,$listGagnant[$i],$i+1);
+				}
+				$this->updateConcoursTire($id_concours);
+				$this->setMessage(JText::_('JLIB_APPLICATION_SUCCES_TIRAGE'), 'success');
+
+				$this->setRedirect(
+					JRoute::_(
+							'index.php?option=' . $this->option . '&view=' . $this->view_list
+							. $this->getRedirectToListAppend(), false
+						)
+				);
+
+				return true;
+			}
+
+		}		
+	}
+
+
+	protected function updateConcoursTire($id_concours){
+		$db = JFactory::getDBO();
+		$query = "UPDATE #__concours SET tirage=1 WHERE id=".$id_concours ;
+						
+		$db->setQuery($query);
+        $db->query();
+	}
+
+	protected function insertGagnant($id_concours,$id_user,$place){
+		$db = JFactory::getDBO();
+		$query = "INSERT INTO #__gagnant"
+						. "\n (`id` ,`id_concours` ,`id_user` ,`classement`) VALUES (NULL , '".$id_concours."', '".$id_user."', '".$place."')";
+						echo $query;
+		$db->setQuery($query);
+        $db->query();
+	}
+
+	protected function SelectRandomGagnant($listParticipant){
+		return $listParticipant[mt_rand(0, (count($listParticipant)-1))];
+	}
+
+	protected function SelectAllGagnant($listParticipant,$nb_gagnant){
+		$list_gagnant=array();
+		for($i=0;$i<$nb_gagnant;$i++){
+			$aParticipant=array();
+			for($j=0;$j<count($listParticipant);$j++){
+				if(!in_array($j,$list_gagnant)){
+					for($k=0;$k<$listParticipant[$j]->nb_ligne;$k++){
+						$aParticipant[]=$j;
+					}
+				}
+			}
+			$list_gagnant[]=$listParticipant[$this->SelectRandomGagnant($aParticipant)]->id_user;
+		}
+		return $list_gagnant;
+	}
 }

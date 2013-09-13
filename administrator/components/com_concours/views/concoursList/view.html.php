@@ -15,7 +15,7 @@ jimport('joomla.application.component.view');
          */
         function display($tpl = null) 
         {
-                // Get data from the model
+            // Get data from the model
         	$items = $this->get('Items');
         	$pagination = $this->get('Pagination');
 
@@ -45,5 +45,14 @@ jimport('joomla.application.component.view');
                 JToolBarHelper::deleteList('', 'concoursList.delete');
                 JToolBarHelper::editList('concours.edit');
                 JToolBarHelper::addNew('concours.add');
+        }
+
+        protected function isOverConcours($date_fin){
+            $now = date('Y-m-d H:i:s');
+            $now = new DateTime( $now );
+            $now = $now->format('YmdHis');
+            $date_fin = new DateTime( $date_fin );
+            $date_fin = $date_fin->format('YmdHis');
+            return $now >= $date_fin;
         }
     }

@@ -20,7 +20,7 @@ class concoursModelconcoursList extends JModelList{
                 $db = JFactory::getDBO();
                 $query = $db->getQuery(true);
                 // Select some fields
-                $query->select('c.id,c.libelle,c.nb_gagnant,c.tirage,(select count(*) from #__participant p where p.id_concours=c.id) as nb_participant');
+                $query->select('c.id,c.libelle,c.date_fin,c.nb_gagnant,c.tirage,(select count(*) from #__participant p where p.id_concours=c.id) as nb_participant');
                 // From the hello table
                 $query->from('#__concours c');
                 return $query;

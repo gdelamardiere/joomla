@@ -15,4 +15,5 @@ class concoursTablegagnant extends JTable{
         function __construct(&$db) 
         {
                 parent::__construct('#__gagnant', 'id', $db);
-        }}
+        }
+    }

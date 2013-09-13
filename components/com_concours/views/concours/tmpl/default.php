@@ -9,7 +9,20 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 ?>
-<h1><?php echo $this->msg; ?></h1>
+<?php 
+if($this->getExistConcours){
+	switch($this->getStateConcours){
+    	case -1:$this->getFormulaireConcours();
+    			break;
+    	case 0:echo "Concours terminé, le tirage est en cours";
+    		break;
+    	case 1:var_dump($this->getGagnantConcours);
+    		break;
+    };
+}
+else{
+	echo "ce concours n'existe pas!!";
+} ?>
 <?php /*
 <script type="text/javascript">
 function iFrameHeight() {

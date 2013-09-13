@@ -25,6 +25,11 @@ foreach($this->items as $i => $item): ?>
                                 <?php echo $item->tirage; ?>
                         </a>
                 </td>
+                 <td>
+                        <a href="<?php echo JRoute::_('index.php?option=com_concours&task=concours.edit&id=' . $item->id); ?>">
+                                <?php echo $item->date_fin; ?>
+                        </a>
+                </td>
                 <td>
                         <a href="<?php echo JRoute::_('index.php?option=com_concours&view=gain_concoursList&id_concours=' . $item->id); ?>">
                                 Voir les lots
@@ -41,7 +46,11 @@ foreach($this->items as $i => $item): ?>
                                 Voir les Gagnants
                         </a>
 
-                        <?php }?>
+                        <?php }else if($item->tirage==0 && $this->isOverConcours($item->date_fin)){?>
+                        <a href="<?php echo JRoute::_('index.php?option=com_concours&task=concours.tirage&id=' . $item->id); ?>">
+                                lancer le tirage
+                        </a>
+                         <?php }?>
                 </td>
         </tr>
 <?php endforeach; ?>
