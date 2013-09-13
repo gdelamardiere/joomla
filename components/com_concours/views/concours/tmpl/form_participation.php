@@ -11,7 +11,12 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <?php 
 if($this->getExistConcours){
-	$this->getFormulaireConcours();
+	$user = &JFactory::getUser() ;
+	if ( $user->id ) {?>
+		     <a href="<?php echo JRoute::_('index.php?option=com_concours&task=participation_concours.edit&id=' . JRequest::getint('id')); ?>">Participer</a>
+	<?php } else {
+		  echo "non connecte";
+		} 
     	
 }
 else{

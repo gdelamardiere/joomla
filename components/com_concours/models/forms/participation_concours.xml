@@ -2,18 +2,16 @@
 <form >
 	<fieldset>
 		<field name="id" type="hidden" />
-		<field name="libelle" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
-		<field name="date_fin" type="calendar" label="COM_CONCOURS_CONCOURS_DATE_FIN_LABEL" description="COM_CONCOURS_CONCOURS_DATE_FIN_DESC" size="40" class="inputbox" default=""  />
-		<field name="nb_gagnant" type="text" label="COM_CONCOURS_CONCOURS_NB_GAGNANT_LABEL" description="COM_CONCOURS_CONCOURS_NB_GAGNANT_DESC" size="40" class="inputbox" default=""  required="true"  />
-		<field name="type_email" type="list" label="COM_CONCOURS_CONCOURS_TYPE_EMAIL_LABEL" description="COM_CONCOURS_CONCOURS_TYPE_EMAIL_DESC" size="1" class="inputbox" default="0">
-			<option value="-1">TOUS</option>
-			<option value="0">GAGNANT</option>
-			<option value="1">AUCUN</option>
-		</field>
-		<field name="tirage" type="radio" default="0" label="COM_CONCOURS_CONCOURS_TIRAGE_LABEL" description="COM_CONCOURS_CONCOURS_TIRAGE_DESC">
-		  <option value="0">non effectué</option>
-		  <option value="1">effectué</option>
-		</field>
+		<field name="username" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="lastname" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="firstname" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="adresse" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="email" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="pseudo_google" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="pseudo_google" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="pseudo_facebook" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+		<field name="pseudo_twitter" type="text" label="COM_CONCOURS_CONCOURS_LIBELLE_LABEL" description="COM_CONCOURS_CONCOURS_LIBELLE_DESC" size="100" class="inputbox validate-libelle" default="" validate="libelle" required="true" />
+
 	</fieldset>
 </form>
 

@@ -8,7 +8,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 jimport('joomla.application.component.view');
-die;
+
 /**
  * @package		Joomla.Site
  * @subpackage	com_concours
@@ -44,7 +44,7 @@ class concoursViewparticipation_concours extends JView
                 parent::display($tpl);
 
                 // Set the document
-                $this->setDocument();
+              //  $this->setDocument();
         }
  
         /**
